@@ -20,13 +20,22 @@ const NavBar = () => {
           </svg>
         </Link>
         <div className="flex gap-10 items-center">
-          <Link to="/explore" className="hover:scale-110 duration-200">
+          <Link
+            to="/explore"
+            className="font-semibold hover:scale-110 duration-200"
+          >
             Explore
           </Link>
-          <Link to="/notifications" className="hover:scale-110 duration-200">
+          <Link
+            to="/notifications"
+            className="font-semibold hover:scale-110 duration-200"
+          >
             Notifications
           </Link>
-          <Link to="/messages" className="hover:scale-110 duration-200">
+          <Link
+            to="/messages"
+            className="font-semibold hover:scale-110 duration-200"
+          >
             Messages
           </Link>
           <Link to="/profile" className="hover:scale-110 duration-200">
