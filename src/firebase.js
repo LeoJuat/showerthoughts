@@ -1,15 +1,21 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+import { collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC38sRmlf_WN4l_UKP5iu_4JiHhHqaX2wQ",
-  authDomain: "twitter-redone.firebaseapp.com",
-  projectId: "twitter-redone",
-  storageBucket: "twitter-redone.appspot.com",
-  messagingSenderId: "1069936874019",
-  appId: "1:1069936874019:web:065ef361ee887ecaa51796",
+  apiKey: "AIzaSyC2OQIMd_c7tOfOBD70OXUtOdwBJeFaPyM",
+  authDomain: "twitter-redesign-5e727.firebaseapp.com",
+  projectId: "twitter-redesign-5e727",
+  storageBucket: "twitter-redesign-5e727.appspot.com",
+  messagingSenderId: "739046827215",
+  appId: "1:739046827215:web:a1aa305cc5674930e0c3ba",
 };
 
 // Initialize Firebase
+// eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
+
+const db = getFirestore();
+
+export const colRef = collection(db, "tweets");
+
+export default db;

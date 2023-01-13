@@ -5,3 +5,31 @@
 .textArea {
   resize: none;
 }
+
+.Fitness-Health {
+  background-color: #26d41a;
+}
+
+.Technology {
+  background-color: #00ddff;
+}
+
+.Sports {
+  background-color: #ff9d00;
+}
+
+.News {
+  background-color: #d41a5d;
+}
+
+.Pop-culture {
+  background-color: #db00ff;
+}
+
+.Movies-Shows {
+  background-color: #ffc200;
+}
+
+.Entertainment {
+  background-color: #ff00c8;
+}
