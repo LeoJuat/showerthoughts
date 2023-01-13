@@ -3,36 +3,58 @@ import React, { useEffect, useState } from "react";
 import Tweet from "../Components/Tweet";
 import TweetBox from "../Components/TweetBox";
 import { colRef } from "../firebase";
+import FlipMove from "react-flip-move";
 
 const Home = () => {
   const [tweets, setTweets] = useState([]);
+  const [posted, setPosted] = useState(false);
 
   useEffect(() => {
     getDocs(colRef)
       .then((snapshot) => {
         let tweets = [];
         snapshot.docs.forEach((doc) => {
-          tweets.push({ ...doc.data(), id: doc.id });
+          tweets.push({
+            ...doc.data(),
+            id: doc.id,
+          });
         });
+        // console.log(tweets);
         setTweets(tweets);
+        setPosted(false);
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [posted]);
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
 
   return (
     <>
-      <TweetBox />;
-      {tweets?.map((post, index) => (
-        <Tweet
-          key={index}
-          username={post.username}
-          text={post.text}
-          avatar={post.avatar}
-          category={post.category}
-        />
-      ))}
+      <TweetBox setPosted={setPosted} />;
+      <FlipMove>
+        {tweets?.map((post, index) => (
+          <Tweet
+            key={index}
+            username={post.username}
+            text={post.text}
+            avatar={post.avatar}
+            category={post.category}
+            image={post.image}
+            timestamp={post.timestamp
+              ?.toDate()
+              .toLocaleDateString("en-US", options)}
+          />
+        ))}
+      </FlipMove>
       <Tweet
         username="JaneDoe23"
         text="I'm so glad I finally found an easy website to help track my
