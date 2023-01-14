@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, getFirestore } from "firebase/firestore";
+import { collection, getFirestore, orderBy, query } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC2OQIMd_c7tOfOBD70OXUtOdwBJeFaPyM",
@@ -17,5 +17,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
 export const colRef = collection(db, "tweets");
+export const q = query(colRef, orderBy("timestamp", "desc"));
 
 export default db;

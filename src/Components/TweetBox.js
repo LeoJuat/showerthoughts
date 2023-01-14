@@ -4,7 +4,7 @@ import { addDoc } from "firebase/firestore";
 import { colRef } from "../firebase";
 import { Timestamp } from "@firebase/firestore";
 
-const TweetBox = ({ setPosted }) => {
+const TweetBox = () => {
   const [imageInput, setImageInput] = useState(false);
   const [category, setCategory] = useState("");
   const [tweetMessage, setTweetMessage] = useState("");
@@ -37,7 +37,6 @@ const TweetBox = ({ setPosted }) => {
     setTweetMessage("");
     setTweetImage("");
     setCategory("");
-    setPosted(true);
   };
 
   return (
