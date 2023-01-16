@@ -1,13 +1,18 @@
 import { onSnapshot } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Post from "../Components/Post";
 import PostBox from "../Components/PostBox";
 import { q } from "../firebase";
 import FlipMove from "react-flip-move";
 import Trending from "../Components/Trending";
+import NavBarLogin from "../Components/NavBarLogin";
+import AuthContext from "../store/AuthContext";
+import NavBar from "../Components/NavBar";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+
+  const authCtx = useContext(AuthContext);
 
   onSnapshot(q, (snapshot) => {
     let posts = [];
@@ -31,6 +36,8 @@ const Home = () => {
 
   return (
     <>
+      {authCtx.isLoggedIn && <NavBar />}
+      {!authCtx.isLoggedIn && <NavBarLogin />}
       <Trending />
       <PostBox />;
       <FlipMove>

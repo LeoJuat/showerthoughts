@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import NavBar from "../Components/NavBar";
 
 const Explore = () => {
   const [news, setNews] = useState(null);
@@ -27,34 +28,33 @@ const Explore = () => {
   }, []);
 
   return (
-    <section className="w-4/5 h-full pb-10 mx-auto">
-      <h1 className="text-[#E85A4F] font-bold text-3xl py-10 tracking-wider">
-        Trending now
-      </h1>
-      {!news && <p className="text-xl text-center">Loading...</p>}
-      {news &&
-        news?.map((article, index) => {
-          return (
-            <div className="flex gap-5">
-              <div
-                key={index}
-                className="bg-[rgba(216,195,165,0.50)] w-4/5 mt-2 py-5 my-3 px-10 rounded-xl whitespace-nowrap overflow-hidden text-2xl font-normal text-start"
-              >
-                {article.name.substring(0, 75) + "..."}
+    <>
+      <NavBar />
+      <section className="w-4/5 h-full pb-10 mx-auto">
+        <h1 className="text-[#E85A4F] font-bold text-3xl py-10 tracking-wider">
+          Trending now
+        </h1>
+        {!news && <p className="text-xl text-center">Loading...</p>}
+        {news &&
+          news?.map((article, index) => {
+            return (
+              <div key={index} className="flex gap-5">
+                <div className="bg-[rgba(216,195,165,0.50)] w-4/5 mt-2 py-5 my-3 px-10 rounded-xl whitespace-nowrap overflow-hidden text-2xl font-normal text-start">
+                  {article.name.substring(0, 75) + "..."}
+                </div>
+                <a
+                  className="flex items-center justify-center w-1/5 px-10 py-5 my-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  href={article.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  See full article
+                </a>
               </div>
-              <a
-                key={article.name}
-                className="flex items-center justify-center w-1/5 px-10 py-5 my-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
-                href={article.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                See full article
-              </a>
-            </div>
-          );
-        })}
-    </section>
+            );
+          })}
+      </section>
+    </>
   );
 };
 
