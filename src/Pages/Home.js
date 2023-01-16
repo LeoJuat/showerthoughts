@@ -1,22 +1,23 @@
 import { onSnapshot } from "firebase/firestore";
 import React, { useState } from "react";
-import Tweet from "../Components/Tweet";
-import TweetBox from "../Components/TweetBox";
+import Post from "../Components/Post";
+import PostBox from "../Components/PostBox";
 import { q } from "../firebase";
 import FlipMove from "react-flip-move";
+import Trending from "../Components/Trending";
 
 const Home = () => {
-  const [tweets, setTweets] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   onSnapshot(q, (snapshot) => {
-    let tweets = [];
+    let posts = [];
     snapshot.docs.forEach((doc) => {
-      tweets.push({
+      posts.push({
         ...doc.data(),
         id: doc.id,
       });
     });
-    setTweets(tweets);
+    setPosts(posts);
   });
 
   const options = {
@@ -30,10 +31,11 @@ const Home = () => {
 
   return (
     <>
-      <TweetBox />;
+      <Trending />
+      <PostBox />;
       <FlipMove>
-        {tweets?.map((post, index) => (
-          <Tweet
+        {posts?.map((post, index) => (
+          <Post
             key={index}
             username={post.username}
             text={post.text}
