@@ -32,7 +32,11 @@ const NavBar = () => {
             Messages
           </Link>
           <Link to="/profile" className="duration-200 hover:scale-110">
-            <Avatar />
+            {localStorage.getItem("avatar") ? (
+              <Avatar src={localStorage.getItem("avatar")} />
+            ) : (
+              <Avatar />
+            )}
           </Link>
         </div>
       </ul>

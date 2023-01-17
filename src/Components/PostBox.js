@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Avatar } from "@mui/material";
 import { addDoc } from "firebase/firestore";
 import { colRef } from "../firebase";
 import { Timestamp } from "@firebase/firestore";
+import AuthContext from "../store/AuthContext";
 
 const PostBox = () => {
   const [imageInput, setImageInput] = useState(false);
   const [category, setCategory] = useState("");
   const [postMessage, setPostMessage] = useState("");
   const [postImage, setPostImage] = useState("");
+
+  const authCtx = useContext(AuthContext);
 
   const imageHandler = (e) => {
     e.preventDefault();
@@ -24,16 +27,19 @@ const PostBox = () => {
     e.preventDefault();
 
     addDoc(colRef, {
-      username: "TestName",
-      avatar:
-        "https://user-images.githubusercontent.com/100502573/212198528-ba21fc46-e85e-44ef-aad3-6ae1b4026c49.jpg",
+      username: localStorage.getItem("name"),
+      avatar: localStorage.getItem("avatar") ? (
+        localStorage.getItem("avatar")
+      ) : (
+        <Avatar />
+      ),
       category: category,
       image: postImage,
       text: postMessage,
       timestamp: Timestamp.fromDate(new Date()),
     });
 
-    setImageInput(!imageInput);
+    setImageInput(false);
     setPostMessage("");
     setPostImage("");
     setCategory("");
@@ -44,7 +50,14 @@ const PostBox = () => {
       <div className="bg-[rgba(216,195,165,0.50)] w-4/5 mx-auto mt-16 rounded-xl">
         <form className="pt-10">
           <div className="flex gap-5 pl-16">
-            <Avatar sx={{ width: 56, height: 56 }} />
+            {localStorage.getItem("avatar") ? (
+              <Avatar
+                src={localStorage.getItem("avatar")}
+                sx={{ width: 56, height: 56 }}
+              />
+            ) : (
+              <Avatar />
+            )}
             <textarea
               onChange={(e) => setPostMessage(e.target.value)}
               value={postMessage}
@@ -89,18 +102,25 @@ const PostBox = () => {
                   <option value="News">News</option>
                   <option value="Technology">Technology</option>
                 </select>
-                {/* <label htmlFor="category">
-                <span className="text-red-500">*</span>
-              </label> */}
               </div>
             </div>
-            <button
-              onClick={postHandler}
-              type="submit"
-              className="bg-[#E85A4F] rounded-3xl px-10 py-3 font-bold tracking-wide text-white hover:bg-[#da4f45] duration-200"
-            >
-              Post
-            </button>
+            {authCtx.isLoggedIn && (
+              <button
+                onClick={postHandler}
+                type="submit"
+                className="bg-[#E85A4F] rounded-3xl px-10 py-3 font-bold tracking-wide text-white hover:bg-[#da4f45] duration-200"
+              >
+                Post
+              </button>
+            )}
+            {!authCtx.isLoggedIn && (
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="bg-[#E85A4F] rounded-3xl px-10 py-3 font-bold tracking-wide text-white hover:bg-[#da4f45] duration-200"
+              >
+                Login to post
+              </button>
+            )}
           </div>
         </form>
       </div>

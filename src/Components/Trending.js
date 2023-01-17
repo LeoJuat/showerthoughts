@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../store/AuthContext";
 
 const Trending = () => {
   const [news, setNews] = useState(null);
+
+  const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     const options = {
@@ -31,7 +34,10 @@ const Trending = () => {
         <h1 className="text-[#E85A4F] font-bold text-3xl py-10 tracking-wider">
           Trending now{" "}
           <span className="text-sm font-normal tracking-normal">
-            <Link to="/explore">(see more)</Link>
+            {authCtx.isLoggedIn && <Link to="/explore">(see more)</Link>}
+            {!authCtx.isLoggedIn && (
+              <Link to="/login">(login to see more)</Link>
+            )}
           </span>
         </h1>
         {!news && <p className="text-xl text-center">Loading...</p>}
