@@ -7,6 +7,8 @@ import AuthContext from "../store/AuthContext";
 
 const Profile = () => {
   const [imageInput, setImageInput] = useState(false);
+  const [showLikes, setShowLikes] = useState(false);
+  const [showPosts, setShowPosts] = useState(true);
   const [avatar, setAvatar] = useState("");
 
   const navigate = useNavigate();
@@ -53,6 +55,20 @@ const Profile = () => {
     minute: "numeric",
   };
 
+  const showPostsHandler = (e) => {
+    e.preventDefault();
+
+    setShowLikes(!showLikes);
+    setShowPosts(!showPosts);
+  };
+
+  const showLikesHandler = (e) => {
+    e.preventDefault();
+
+    setShowPosts(!showPosts);
+    setShowLikes(!showLikes);
+  };
+
   return (
     <>
       <nav className="w-5/6 py-10 mx-auto background">
@@ -73,27 +89,68 @@ const Profile = () => {
           </div>
         </ul>
       </nav>
-      <section>
-        {oldPosts?.map(
-          (post, index) =>
-            localStorage.getItem(
-              `${localStorage.getItem("uid")}-${post.postUUID}`
-            ) && (
-              <Posts
-                key={index}
-                username={post.username}
-                text={post.text}
-                avatar={post.avatar}
-                category={post.category}
-                image={post.image}
-                uuid={post.postUUID}
-                timestamp={post.timestamp
-                  ?.toDate()
-                  .toLocaleDateString("en-US", options)}
-              />
-            )
-        )}
+      <section className="flex justify-center w-5/6 gap-5 mx-auto">
+        <button
+          onClick={showPostsHandler}
+          className={`w-1/5 px-10 py-3 mt-2 text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
+            showPosts ? "bg-[#E85A4F] text-white" : "bg-transparent text-black"
+          }`}
+        >
+          Posts
+        </button>
+        <button
+          onClick={showLikesHandler}
+          className={`w-1/5 px-10 py-3 mt-2 text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
+            showLikes ? "bg-[#E85A4F] text-white" : "bg-transparent text-black"
+          }`}
+        >
+          Likes
+        </button>
       </section>
+      {showPosts && (
+        <section>
+          {oldPosts?.map(
+            (post, index) =>
+              localStorage.getItem("uid") === post.uid && (
+                <Posts
+                  key={index}
+                  username={post.username}
+                  text={post.text}
+                  avatar={post.avatar}
+                  category={post.category}
+                  image={post.image}
+                  uuid={post.postUUID}
+                  timestamp={post.timestamp
+                    ?.toDate()
+                    .toLocaleDateString("en-US", options)}
+                />
+              )
+          )}
+        </section>
+      )}
+      {showLikes && (
+        <section>
+          {oldPosts?.map(
+            (post, index) =>
+              localStorage.getItem(
+                `${localStorage.getItem("uid")}-${post.postUUID}`
+              ) && (
+                <Posts
+                  key={index}
+                  username={post.username}
+                  text={post.text}
+                  avatar={post.avatar}
+                  category={post.category}
+                  image={post.image}
+                  uuid={post.postUUID}
+                  timestamp={post.timestamp
+                    ?.toDate()
+                    .toLocaleDateString("en-US", options)}
+                />
+              )
+          )}
+        </section>
+      )}
       <button
         className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
         onClick={avatarHandler}
