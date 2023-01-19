@@ -1,5 +1,8 @@
-import React, { useContext, useState } from "react";
+import { onSnapshot } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Posts from "../Components/Post";
+import { q } from "../firebase";
 import AuthContext from "../store/AuthContext";
 
 const Profile = () => {
@@ -8,6 +11,21 @@ const Profile = () => {
 
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
+
+  const [oldPosts, setOldPosts] = useState([]);
+
+  useEffect(() => {
+    onSnapshot(q, (snapshot) => {
+      let posts = [];
+      snapshot.docs.forEach((doc) => {
+        posts.push({
+          ...doc.data(),
+          id: doc.id,
+        });
+      });
+      setOldPosts(posts);
+    });
+  }, []);
 
   const logoutHandler = () => {
     authCtx.logout(authCtx.token);
@@ -23,7 +41,16 @@ const Profile = () => {
   const setAvatarHandler = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("avatar", avatar);
+    localStorage.setItem(`avatar-${localStorage.getItem("uid")}`, avatar);
+  };
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   };
 
   return (
@@ -46,11 +73,32 @@ const Profile = () => {
           </div>
         </ul>
       </nav>
+      <section>
+        {oldPosts?.map(
+          (post, index) =>
+            localStorage.getItem(
+              `${localStorage.getItem("uid")}-${post.postUUID}`
+            ) && (
+              <Posts
+                key={index}
+                username={post.username}
+                text={post.text}
+                avatar={post.avatar}
+                category={post.category}
+                image={post.image}
+                uuid={post.postUUID}
+                timestamp={post.timestamp
+                  ?.toDate()
+                  .toLocaleDateString("en-US", options)}
+              />
+            )
+        )}
+      </section>
       <button
         className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
         onClick={avatarHandler}
       >
-        Set avatar
+        Change avatar
       </button>
       {imageInput && (
         <div>

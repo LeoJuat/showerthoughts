@@ -143,7 +143,7 @@ const Login = () => {
             </div>
             {!loading && (
               <button className="text-white bg-[#E85A4F] border-0 my-1 py-2 px-8 focus:outline-none hover:bg-[#c1453c] rounded text-lg font-medium transition-all duration-300 ease-in-out">
-                Sign up
+                Login
               </button>
             )}
             {!loading && (

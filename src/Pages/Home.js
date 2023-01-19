@@ -1,5 +1,5 @@
 import { onSnapshot } from "firebase/firestore";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Post from "../Components/Post";
 import PostBox from "../Components/PostBox";
 import { q } from "../firebase";
@@ -10,20 +10,22 @@ import AuthContext from "../store/AuthContext";
 import NavBar from "../Components/NavBar";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [oldPosts, setOldPosts] = useState([]);
 
   const authCtx = useContext(AuthContext);
 
-  onSnapshot(q, (snapshot) => {
-    let posts = [];
-    snapshot.docs.forEach((doc) => {
-      posts.push({
-        ...doc.data(),
-        id: doc.id,
+  useEffect(() => {
+    onSnapshot(q, (snapshot) => {
+      let posts = [];
+      snapshot.docs.forEach((doc) => {
+        posts.push({
+          ...doc.data(),
+          id: doc.id,
+        });
       });
+      setOldPosts(posts);
     });
-    setPosts(posts);
-  });
+  }, []);
 
   const options = {
     weekday: "long",
@@ -41,7 +43,7 @@ const Home = () => {
       <Trending />
       <PostBox />;
       <FlipMove>
-        {posts?.map((post, index) => (
+        {oldPosts?.map((post, index) => (
           <Post
             key={index}
             username={post.username}
@@ -49,6 +51,7 @@ const Home = () => {
             avatar={post.avatar}
             category={post.category}
             image={post.image}
+            uuid={post.postUUID}
             timestamp={post.timestamp
               ?.toDate()
               .toLocaleDateString("en-US", options)}

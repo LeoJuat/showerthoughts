@@ -4,6 +4,7 @@ import { addDoc } from "firebase/firestore";
 import { colRef } from "../firebase";
 import { Timestamp } from "@firebase/firestore";
 import AuthContext from "../store/AuthContext";
+import { v4 as uuidv4 } from "uuid";
 
 const PostBox = () => {
   const [imageInput, setImageInput] = useState(false);
@@ -28,15 +29,17 @@ const PostBox = () => {
 
     addDoc(colRef, {
       username: localStorage.getItem("name"),
-      avatar: localStorage.getItem("avatar") ? (
-        localStorage.getItem("avatar")
+      avatar: localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
+        localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
       ) : (
         <Avatar />
       ),
       category: category,
       image: postImage,
       text: postMessage,
+      uid: localStorage.getItem("uid"),
       timestamp: Timestamp.fromDate(new Date()),
+      postUUID: uuidv4(),
     });
 
     setImageInput(false);
@@ -50,9 +53,11 @@ const PostBox = () => {
       <div className="bg-[rgba(216,195,165,0.50)] w-4/5 mx-auto mt-16 rounded-xl">
         <form className="pt-10">
           <div className="flex gap-5 pl-16">
-            {localStorage.getItem("avatar") ? (
+            {localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
               <Avatar
-                src={localStorage.getItem("avatar")}
+                src={localStorage.getItem(
+                  `avatar-${localStorage.getItem("uid")}`
+                )}
                 sx={{ width: 56, height: 56 }}
               />
             ) : (
