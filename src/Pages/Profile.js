@@ -1,3 +1,4 @@
+import { Avatar } from "@mui/material";
 import { onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,8 +8,10 @@ import AuthContext from "../store/AuthContext";
 
 const Profile = () => {
   const [imageInput, setImageInput] = useState(false);
+  const [showBio, setShowBio] = useState(false);
   const [showLikes, setShowLikes] = useState(false);
   const [showPosts, setShowPosts] = useState(true);
+  const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState("");
 
   const navigate = useNavigate();
@@ -43,7 +46,23 @@ const Profile = () => {
   const setAvatarHandler = (e) => {
     e.preventDefault();
 
+    if (localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)) {
+      localStorage.removeItem(`avatar-${localStorage.getItem("uid")}`);
+    }
+
     localStorage.setItem(`avatar-${localStorage.getItem("uid")}`, avatar);
+    setImageInput(!imageInput);
+  };
+
+  const setBioHandler = (e) => {
+    e.preventDefault();
+
+    if (localStorage.getItem(`bio-${localStorage.getItem("uid")}`)) {
+      localStorage.removeItem(`bio-${localStorage.getItem("uid")}`);
+    }
+
+    localStorage.setItem(`bio-${localStorage.getItem("uid")}`, bio);
+    setShowBio(!showBio);
   };
 
   const options = {
@@ -69,6 +88,12 @@ const Profile = () => {
     setShowLikes(!showLikes);
   };
 
+  const bioHandler = (e) => {
+    e.preventDefault();
+
+    setShowBio(!showBio);
+  };
+
   return (
     <>
       <nav className="w-5/6 py-10 mx-auto background">
@@ -89,7 +114,79 @@ const Profile = () => {
           </div>
         </ul>
       </nav>
-      <section className="flex justify-center w-5/6 gap-5 mx-auto">
+
+      <div className="bg-[rgba(216,195,165,0.50)] h-92 w-4/5 mx-auto mt-12 rounded-xl py-10">
+        <div className="flex items-center justify-between w-5/6 gap-5 mx-auto">
+          {localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
+            <Avatar
+              src={localStorage.getItem(
+                `avatar-${localStorage.getItem("uid")}`
+              )}
+              sx={{ width: 80, height: 80 }}
+            />
+          ) : (
+            <Avatar sx={{ width: 80, height: 80 }} />
+          )}
+          <div className="flex flex-col">
+            <button
+              onClick={avatarHandler}
+              className={`w-full px-6 py-3 mt-2 text-xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
+            >
+              Change avatar
+            </button>
+            <button
+              onClick={bioHandler}
+              className={`w-full px-6 py-3 mt-2 text-xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
+            >
+              Edit bio
+            </button>
+          </div>
+        </div>
+        <h1 className="w-5/6 mx-auto text-3xl text-gray-700">
+          @{localStorage.getItem("name")}
+        </h1>
+        <p className="w-9/12 mx-auto mt-8 mb-8 text-2xl">
+          {localStorage.getItem(`bio-${localStorage.getItem("uid")}`)}
+        </p>
+        {showBio && (
+          <div className="flex flex-col items-center justify-center gap-3 py-5">
+            <textarea
+              maxLength={150}
+              rows={2}
+              onChange={(e) => setBio(e.target.value)}
+              value={bio}
+              className="w-5/6 pt-2 text-lg text-black border-2 border-[#E85A4F] rounded-xl px-5 py-1 font-normal tracking-wide bg-transparent textArea"
+              name="text"
+              placeholder="Write something for your bio!"
+            ></textarea>
+            <button
+              className="border-2 w-5/6 rounded-xl px-5 py-2 font-normal tracking-wide text-white bg-[#E85A4F] hover:bg-[#cb483f] duration-200"
+              onClick={setBioHandler}
+            >
+              Set bio
+            </button>
+          </div>
+        )}
+        {imageInput && (
+          <div className="flex items-center justify-center gap-3 py-5">
+            <input
+              onChange={(e) => setAvatar(e.target.value)}
+              value={avatar}
+              className="pt-2 text-lg text-black border-2 border-[#E85A4F] rounded-xl px-5 py-1 font-normal tracking-wide bg-transparent"
+              name="image"
+              placeholder="Upload image/gif URL"
+            ></input>
+            <button
+              className="border-2 border-[#E85A4F] rounded-xl px-5 py-2 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
+              onClick={setAvatarHandler}
+            >
+              Confirm avatar
+            </button>
+          </div>
+        )}
+      </div>
+
+      <section className="flex justify-center w-5/6 gap-40 pt-20 mx-auto">
         <button
           onClick={showPostsHandler}
           className={`w-1/5 px-10 py-3 mt-2 text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
@@ -150,29 +247,6 @@ const Profile = () => {
               )
           )}
         </section>
-      )}
-      <button
-        className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
-        onClick={avatarHandler}
-      >
-        Change avatar
-      </button>
-      {imageInput && (
-        <div>
-          <input
-            onChange={(e) => setAvatar(e.target.value)}
-            value={avatar}
-            className="w-5/6 pt-2 text-lg text-black bg-red-500"
-            name="image"
-            placeholder="Upload image URL"
-          ></input>
-          <button
-            className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
-            onClick={setAvatarHandler}
-          >
-            Confirm avatar
-          </button>
-        </div>
       )}
     </>
   );

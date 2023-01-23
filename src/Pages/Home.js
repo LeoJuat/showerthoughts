@@ -40,6 +40,9 @@ const Home = () => {
     <>
       {authCtx.isLoggedIn && <NavBar />}
       {!authCtx.isLoggedIn && <NavBarLogin />}
+      <h1 className="text-[#E85A4F] underline underline-offset-4 decoration-[rgba(216,195,165,0.50)] font-bold text-5xl py-10 flex justify-center tracking-wider w-3/5 mx-auto">{`Hi, ${localStorage.getItem(
+        "name"
+      )}! Great to see you!`}</h1>
       <Trending />
       <PostBox />;
       <FlipMove>
