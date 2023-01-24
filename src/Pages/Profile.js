@@ -145,7 +145,7 @@ const Profile = () => {
         <h1 className="w-5/6 mx-auto text-3xl text-gray-700">
           @{localStorage.getItem("name")}
         </h1>
-        <p className="w-9/12 mx-auto mt-8 mb-8 text-2xl">
+        <p className="w-9/12 mx-auto mt-10 mb-8 text-2xl">
           {localStorage.getItem(`bio-${localStorage.getItem("uid")}`)}
         </p>
         {showBio && (
