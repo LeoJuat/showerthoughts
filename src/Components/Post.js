@@ -3,6 +3,8 @@ import { Avatar } from "@mui/material";
 import styles from "./Post.module.css";
 import CommentBox from "./CommentBox";
 import Comment from "./Comment";
+import { addDoc, Timestamp } from "firebase/firestore";
+import { notificationRef } from "../firebase";
 
 const Posts = forwardRef(
   (
@@ -16,6 +18,7 @@ const Posts = forwardRef(
       uuid,
       comment,
       oldPosts,
+      uid,
     },
     ref
   ) => {
@@ -24,6 +27,20 @@ const Posts = forwardRef(
 
     const likeHandler = (e) => {
       e.preventDefault();
+
+      addDoc(notificationRef, {
+        username: localStorage.getItem("name"),
+        avatar: localStorage.getItem(
+          `avatar-${localStorage.getItem("uid")}`
+        ) ? (
+          localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
+        ) : (
+          <Avatar />
+        ),
+        type: "like",
+        timestamp: Timestamp.fromDate(new Date()),
+        uid: uid,
+      });
 
       setLiked(!liked);
       localStorage.getItem(`${localStorage.getItem("uid")}-${uuid}`)
@@ -37,7 +54,6 @@ const Posts = forwardRef(
     const commentHandler = (e) => {
       e.preventDefault();
 
-      console.log(uuid);
       setShowCommentBox(!showCommentBox);
     };
 
@@ -142,12 +158,12 @@ const Posts = forwardRef(
         )}
         {showCommentBox && (
           <CommentBox
+            uid={uid}
             originalUUID={uuid}
             setShowCommentBox={commentBoxHandler}
           />
         )}
         {oldPosts?.map((post, index) => {
-          console.log("test", uuid, post.originalUUID);
           return uuid === post.originalUUID ? (
             <Comment
               key={index}

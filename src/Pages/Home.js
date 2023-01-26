@@ -56,6 +56,7 @@ const Home = () => {
             category={post.category}
             image={post.image}
             uuid={post.postUUID}
+            uid={post.uid}
             originalUUID={post.originalUUID}
             oldPosts={oldPosts}
             timestamp={post.timestamp

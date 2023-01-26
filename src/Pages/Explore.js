@@ -21,7 +21,6 @@ const Explore = () => {
       .then((response) => response.json())
       .then((response) => {
         setNews(response.value);
-        console.log(response.value);
       })
       .catch((err) => console.error(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps

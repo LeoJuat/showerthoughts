@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Avatar } from "@mui/material";
 import { addDoc } from "firebase/firestore";
-import { colRef } from "../firebase";
+import { colRef, notificationRef } from "../firebase";
 import { Timestamp } from "@firebase/firestore";
 import AuthContext from "../store/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 
-const CommentBox = ({ setShowCommentBox, originalUUID }) => {
+const CommentBox = ({ setShowCommentBox, originalUUID, uid }) => {
   const [imageInput, setImageInput] = useState(false);
   const [category, setCategory] = useState("");
   const [postMessage, setPostMessage] = useState("");
@@ -42,6 +42,18 @@ const CommentBox = ({ setShowCommentBox, originalUUID }) => {
       timestamp: Timestamp.fromDate(new Date()),
       postUUID: uuidv4(),
       comment: true,
+    });
+
+    addDoc(notificationRef, {
+      username: localStorage.getItem("name"),
+      avatar: localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
+        localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
+      ) : (
+        <Avatar />
+      ),
+      type: "commente",
+      timestamp: Timestamp.fromDate(new Date()),
+      uid: uid,
     });
 
     setImageInput(false);
