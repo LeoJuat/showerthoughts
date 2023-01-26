@@ -6,7 +6,7 @@ import { Timestamp } from "@firebase/firestore";
 import AuthContext from "../store/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 
-const PostBox = () => {
+const CommentBox = ({ setShowCommentBox, originalUUID }) => {
   const [imageInput, setImageInput] = useState(false);
   const [category, setCategory] = useState("");
   const [postMessage, setPostMessage] = useState("");
@@ -38,19 +38,22 @@ const PostBox = () => {
       image: postImage,
       text: postMessage,
       uid: localStorage.getItem("uid"),
+      originalUUID: originalUUID,
       timestamp: Timestamp.fromDate(new Date()),
       postUUID: uuidv4(),
+      comment: true,
     });
 
     setImageInput(false);
     setPostMessage("");
     setPostImage("");
     setCategory("");
+    setShowCommentBox();
   };
 
   return (
     <>
-      <div className="bg-[rgba(216,195,165,0.50)] w-4/5 mx-auto mt-16 rounded-xl">
+      <div className="bg-[rgba(216,195,165,0.50)] w-3/5 mx-auto mt-10 mb-16 rounded-xl">
         <form className="pt-10">
           <div className="flex gap-5 pl-16">
             {localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
@@ -69,7 +72,7 @@ const PostBox = () => {
               className="w-5/6 pt-2 text-2xl bg-transparent outline-none textArea placeholder:text-[#717171]"
               name="post"
               rows="5"
-              placeholder="What's on your mind?"
+              placeholder="What would you like to say?"
             ></textarea>
           </div>
           <hr className={`border-t-8 border-white w-full mt-5`}></hr>
@@ -115,7 +118,7 @@ const PostBox = () => {
                 type="submit"
                 className="bg-[#E85A4F] rounded-3xl px-10 py-3 font-bold tracking-wide text-white hover:bg-[#da4f45] duration-200"
               >
-                Post
+                Comment
               </button>
             )}
             {!authCtx.isLoggedIn && (
@@ -123,17 +126,14 @@ const PostBox = () => {
                 onClick={(e) => e.preventDefault()}
                 className="bg-[#E85A4F] rounded-3xl px-10 py-3 font-bold tracking-wide text-white hover:bg-[#da4f45] duration-200"
               >
-                Login to post
+                Login to Comment
               </button>
             )}
           </div>
         </form>
       </div>
-      <h1 className="text-[#E85A4F] font-bold text-3xl pt-20 pb-5 tracking-wider w-4/5 mx-auto">
-        Posts
-      </h1>
     </>
   );
 };
 
-export default PostBox;
+export default CommentBox;

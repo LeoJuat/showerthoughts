@@ -44,17 +44,20 @@ const Home = () => {
         "name"
       )}! Great to see you!`}</h1>
       <Trending />
-      <PostBox />;
+      <PostBox />
       <FlipMove>
         {oldPosts?.map((post, index) => (
           <Post
             key={index}
+            comment={post.comment}
             username={post.username}
             text={post.text}
             avatar={post.avatar}
             category={post.category}
             image={post.image}
             uuid={post.postUUID}
+            originalUUID={post.originalUUID}
+            oldPosts={oldPosts}
             timestamp={post.timestamp
               ?.toDate()
               .toLocaleDateString("en-US", options)}
