@@ -1,5 +1,7 @@
+import { addDoc } from "firebase/firestore";
 import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { usersRef } from "../firebase";
 import AuthContext from "../store/AuthContext";
 
 const SignUp = () => {
@@ -69,6 +71,13 @@ const SignUp = () => {
         authCtx.login(data.idToken);
         authCtx.displayName(data.displayName);
         authCtx.uidHandler(data.localId);
+
+        addDoc(usersRef, {
+          username: name,
+          email: enteredEmail,
+          password: enteredPassword,
+          uid: data.localId,
+        });
 
         navigate("/");
       })

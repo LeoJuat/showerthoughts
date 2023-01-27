@@ -18,6 +18,8 @@ const db = getFirestore();
 
 export const colRef = collection(db, "tweets");
 export const notificationRef = collection(db, "notification");
+export const usersRef = collection(db, "users");
+export const usersChatRef = collection(db, "usersChat");
 export const nQ = query(notificationRef, orderBy("timestamp", "desc"));
 export const q = query(colRef, orderBy("timestamp", "desc"));
 

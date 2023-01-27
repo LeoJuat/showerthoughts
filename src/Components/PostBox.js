@@ -8,9 +8,9 @@ import { v4 as uuidv4 } from "uuid";
 
 const PostBox = () => {
   const [imageInput, setImageInput] = useState(false);
+  const [postImage, setPostImage] = useState("");
   const [category, setCategory] = useState("");
   const [postMessage, setPostMessage] = useState("");
-  const [postImage, setPostImage] = useState("");
 
   const authCtx = useContext(AuthContext);
 
