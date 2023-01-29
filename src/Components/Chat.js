@@ -1,14 +1,15 @@
 import { Avatar } from "@mui/material";
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 
 const Chat = () => {
-  const [imageInput, setImageInput] = useState(false);
-  const [postImage, setPostImage] = useState("");
+  // const [imageInput, setImageInput] = useState(false);
+  // const [postImage, setPostImage] = useState("");
 
-  const imageHandler = (e) => {
-    e.preventDefault();
-    setImageInput(!imageInput);
-  };
+  // const imageHandler = (e) => {
+  //   e.preventDefault();
+  //   setImageInput(!imageInput);
+  // };
 
   return (
     <div className="flex flex-col w-2/3 px-3 py-5 overflow-y-scroll scrollbar-hide h-5/6">
@@ -62,10 +63,10 @@ const Chat = () => {
           />
         </div>
         <div className="flex gap-4">
-          <button className="text-white bg-[#E85A4F] border-[#E85A4F] w-1/4 border-2 my-1 py-2 px-4 focus:outline-none hover:bg-[#c1453c] hover:text-white rounded font-medium text-lg transition-all duration-300 ease-in-out">
+          <button className="text-white bg-[#E85A4F] border-[#E85A4F] w-full border-2 my-1 py-2 px-4 focus:outline-none hover:bg-[#c1453c] hover:text-white rounded font-medium text-lg transition-all duration-300 ease-in-out">
             Send
           </button>
-          <button
+          {/* <button
             onClick={imageHandler}
             className="text-[#E85A4F] border-[#E85A4F] w-1/4 border-2 my-1 py-2 px-4 focus:outline-none hover:bg-[#E85A4F] hover:text-white rounded font-medium text-lg transition-all duration-300 ease-in-out"
           >
@@ -79,7 +80,7 @@ const Chat = () => {
               name="image"
               placeholder="Upload image URL"
             ></input>
-          )}
+          )} */}
         </div>
       </form>
     </div>
