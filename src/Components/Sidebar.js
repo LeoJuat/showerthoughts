@@ -3,11 +3,9 @@ import { onSnapshot } from "firebase/firestore";
 import React, { useState } from "react";
 import { usersRef } from "../firebase";
 
-const Sidebar = () => {
+const Sidebar = ({ messages, setMessageThread }) => {
   const [searchName, setSearchName] = useState("");
   const [oldPosts, setOldPosts] = useState([]);
-  const [senderUid, setSenderUid] = useState("");
-  const [receiverUid, setReceiverUid] = useState("");
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -29,11 +27,7 @@ const Sidebar = () => {
   const chatHandler = (e) => {
     e.preventDefault();
 
-    oldPosts?.map((post) =>
-      post.username?.includes(searchName) ? setReceiverUid(post.uid) : ""
-    );
-
-    console.log(receiverUid);
+    setMessageThread(e.target.id);
   };
 
   return (
@@ -48,18 +42,26 @@ const Sidebar = () => {
         {searchName &&
           oldPosts?.map((post) => {
             return post.username?.includes(searchName) ? (
-              <p onClick={chatHandler} key={post.uid}>
+              <p
+                className="flex items-center bg-[#ddd3c4] py-5 mb-3 px-1 rounded-lg hover:bg-[#cec3b2] hover:scale-105 duration-300 cursor-pointer"
+                onClick={chatHandler}
+                key={post.uid}
+                value={post.username}
+                id={post.uid}
+              >
                 {post.username}
               </p>
             ) : (
               ""
             );
           })}
-        <div className="flex items-center bg-[#ddd3c4] py-3 px-2 rounded-lg">
-          <Avatar />
-          <h1 className="ml-5">Name:</h1>
-          <p className="ml-3">This is the message...</p>
-        </div>
+        {!searchName && (
+          <div className="flex items-center bg-[#ddd3c4] py-3 px-2 rounded-lg">
+            <Avatar />
+            <h1 className="ml-5">Name:</h1>
+            <p className="ml-3">This is the message...</p>
+          </div>
+        )}
       </div>
     </>
   );
