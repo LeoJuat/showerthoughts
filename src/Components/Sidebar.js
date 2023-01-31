@@ -42,6 +42,8 @@ const Sidebar = ({ setMessageThread }) => {
     e.preventDefault();
 
     setMessageThread(e.target.id);
+
+    setSearchName("");
   };
 
   const key = "username";
@@ -49,8 +51,6 @@ const Sidebar = ({ setMessageThread }) => {
   const arrayUniqueByKey = [
     ...new Map(sideBar?.map((item) => [item[key], item])).values(),
   ];
-
-  console.log(arrayUniqueByKey);
 
   return (
     <>
@@ -79,10 +79,7 @@ const Sidebar = ({ setMessageThread }) => {
           })}
         {!searchName &&
           arrayUniqueByKey?.map((obj, index) => {
-            if (
-              obj.username !== localStorage.getItem("name") &&
-              obj.receiverUid === localStorage.getItem("uid")
-            ) {
+            if (obj.username !== localStorage.getItem("name")) {
               return (
                 <div
                   onClick={chatHandler}

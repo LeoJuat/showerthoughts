@@ -48,6 +48,8 @@ const Chat = ({ userClicked, setMessages }) => {
       senderUid: localStorage.getItem("uid"),
       messages: enteredMessage,
     });
+
+    messageRef.current.value = "";
   };
 
   const options = {
