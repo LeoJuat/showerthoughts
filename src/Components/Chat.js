@@ -3,9 +3,15 @@ import { addDoc, onSnapshot, Timestamp } from "firebase/firestore";
 import React, { useEffect, useRef, useState } from "react";
 import { chatQ, usersChatRef } from "../firebase";
 
-const Chat = ({ userClicked, setMessages, messageThread }) => {
+const Chat = ({ userClicked, setMessages }) => {
   const messageRef = useRef();
   const [oldPosts, setOldPosts] = useState([]);
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   localStorage.setItem("receiverUid", userClicked);
 
@@ -20,6 +26,7 @@ const Chat = ({ userClicked, setMessages, messageThread }) => {
       });
       setOldPosts(posts);
     });
+    scrollToBottom();
   }, [userClicked]);
 
   const messageHandler = (e) => {
@@ -102,6 +109,7 @@ const Chat = ({ userClicked, setMessages, messageThread }) => {
                       ?.toDate()
                       .toLocaleDateString("en-US", options)}
                   </span>
+                  <div ref={messagesEndRef} />
                 </div>
               );
             } else {
@@ -109,7 +117,7 @@ const Chat = ({ userClicked, setMessages, messageThread }) => {
             }
           })}
 
-        {userClicked && (
+        {userClicked && !oldPosts && (
           <p className="flex justify-center py-10">No messages found</p>
         )}
 

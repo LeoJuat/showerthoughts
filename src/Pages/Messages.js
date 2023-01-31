@@ -5,7 +5,6 @@ import Sidebar from "../Components/Sidebar";
 
 const Messages = () => {
   const [messages, setMessages] = useState("");
-  const [messageThread, setMessageThread] = useState("");
   const [userClicked, setUserClicked] = useState("");
 
   const setMessagesHandler = (msg) => {
@@ -13,7 +12,6 @@ const Messages = () => {
   };
 
   const threadHandler = (uid) => {
-    setMessageThread(uid);
     setUserClicked(uid);
   };
 
@@ -23,11 +21,7 @@ const Messages = () => {
       <section className="w-full h-[75vh]">
         <div className="bg-[rgba(216,195,165,0.50)] flex w-4/5 h-[95%] mx-auto mt-16 rounded-xl">
           <Sidebar messages={messages} setMessageThread={threadHandler} />
-          <Chat
-            userClicked={userClicked}
-            messageThread={messageThread}
-            setMessages={setMessagesHandler}
-          />
+          <Chat userClicked={userClicked} setMessages={setMessagesHandler} />
         </div>
       </section>
     </>
