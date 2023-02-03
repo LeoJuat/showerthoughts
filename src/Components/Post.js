@@ -73,7 +73,7 @@ const Posts = forwardRef(
     return (
       <>
         {!comment && (
-          <section className="w-4/5 h-full pb-20 mx-auto">
+          <section className="w-full h-full mx-auto scale-75 md:pb-20 md:w-4/5 md:scale-100">
             <div ref={ref}>
               <div className="flex gap-4 ml-16 translate-y-7">
                 <Avatar src={avatar} sx={{ width: 72, height: 72 }} />
@@ -82,25 +82,27 @@ const Posts = forwardRef(
               <div className="outline outline-4 outline-[#E85A4F] rounded-2xl pt-20 shadow-xl bg-transparent">
                 <div>
                   <div>
-                    <p className="w-5/6 mx-auto text-3xl text-slate-700">
+                    <p className="w-5/6 mx-auto text-xl md:text-3xl text-slate-700">
                       {text}
                     </p>
                   </div>
                 </div>
                 {image && (
                   <img
-                    className="object-contain mx-auto mt-10 mb-8 bg-transparent shadow-xl w-fit h-80"
+                    className="object-contain mx-auto mt-10 mb-8 scale-75 bg-transparent shadow-xl md:h-80 w-fit md:scale-100 h-30"
                     src={image}
                     alt={image}
                   />
                 )}
-                <div className="flex items-end justify-between w-11/12">
+                <div className="flex flex-col items-start justify-between w-full md:items-end md:flex-row md:w-11/12">
                   <button
-                    className={`${category} rounded-2xl cursor-default ml-24 mt-5 px-10 py-3 font-bold tracking-wide text-white`}
+                    className={`${category} rounded-2xl cursor-default ml-8 lg:ml-24 mt-5 lg:px-10 lg:py-3 px-5 py-2 lg:text-base text-xs font-bold lg:tracking-wide text-white`}
                   >
                     {category}
                   </button>
-                  <p className="text-[#677079] scale-90">{timestamp}</p>
+                  <p className="text-[#677079] scale-75 md:scale-90">
+                    {timestamp}
+                  </p>
                 </div>
                 <hr className={`border-t-4 border-[#E85A4F] w-full mt-5`}></hr>
                 <div className="flex items-center py-5 justify-evenly">

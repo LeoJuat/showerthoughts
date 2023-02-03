@@ -52,7 +52,7 @@ const PostBox = () => {
     <>
       <div className="bg-[rgba(216,195,165,0.50)] w-4/5 mx-auto mt-16 rounded-xl">
         <form className="pt-10">
-          <div className="flex gap-5 pl-16">
+          <div className="flex flex-col gap-5 pl-5 md:pl-16 md:flex-row">
             {localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
               <Avatar
                 src={localStorage.getItem(
@@ -73,8 +73,8 @@ const PostBox = () => {
             ></textarea>
           </div>
           <hr className={`border-t-8 border-white w-full mt-5`}></hr>
-          <div className="flex items-center justify-between w-5/6 py-5 mx-auto bg-transparent">
-            <div className="flex gap-5">
+          <div className="flex flex-col items-center justify-between w-5/6 gap-5 py-5 mx-auto bg-transparent lg:flex-row">
+            <div className="flex flex-col gap-5 lg:flex-row">
               <button
                 onClick={imageHandler}
                 className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
@@ -129,7 +129,7 @@ const PostBox = () => {
           </div>
         </form>
       </div>
-      <h1 className="text-[#E85A4F] font-bold text-3xl pt-20 pb-5 tracking-wider w-4/5 mx-auto">
+      <h1 className="text-[#E85A4F] font-bold text-3xl pt-20  pb-5 tracking-wider w-4/5 mx-auto">
         Posts
       </h1>
     </>

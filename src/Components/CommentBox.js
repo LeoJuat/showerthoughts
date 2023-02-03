@@ -65,9 +65,9 @@ const CommentBox = ({ setShowCommentBox, originalUUID, uid }) => {
 
   return (
     <>
-      <div className="bg-[rgba(216,195,165,0.50)] w-3/5 mx-auto mt-10 mb-16 rounded-xl">
+      <div className="bg-[rgba(216,195,165,0.50)] w-4/5 md:w-3/5 mx-auto mt-10 mb-16 rounded-xl">
         <form className="pt-10">
-          <div className="flex gap-5 pl-16">
+          <div className="flex flex-col gap-5 pl-5 md:pl-16 md:flex-row">
             {localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
               <Avatar
                 src={localStorage.getItem(
@@ -81,18 +81,18 @@ const CommentBox = ({ setShowCommentBox, originalUUID, uid }) => {
             <textarea
               onChange={(e) => setPostMessage(e.target.value)}
               value={postMessage}
-              className="w-5/6 pt-2 text-2xl bg-transparent outline-none textArea placeholder:text-[#717171]"
+              className="w-5/6 pt-2 text-xl md:text-2xl bg-transparent outline-none textArea placeholder:text-[#717171]"
               name="post"
               rows="5"
               placeholder="What would you like to say?"
             ></textarea>
           </div>
           <hr className={`border-t-8 border-white w-full mt-5`}></hr>
-          <div className="flex items-center justify-between w-5/6 py-5 mx-auto bg-transparent">
-            <div className="flex gap-5">
+          <div className="flex flex-col items-center justify-between w-5/6 gap-5 py-5 mx-auto bg-transparent lg:flex-row">
+            <div className="flex flex-col gap-5 lg:flex-row">
               <button
                 onClick={imageHandler}
-                className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black hover:bg-[#E85A4F] hover:text-white duration-200"
+                className="border-2 border-[#E85A4F] rounded-3xl px-5 py-1 font-normal tracking-wide text-black sm:hover:bg-[#E85A4F] sm:hover:text-white duration-200"
               >
                 Image
               </button>
