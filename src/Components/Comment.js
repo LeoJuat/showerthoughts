@@ -5,7 +5,13 @@ const Comment = forwardRef(
   ({ username, timestamp, text, image, avatar, category }, ref) => {
     return (
       <>
+        <div className="flex justify-center text-xl text-gray-600 scale-100 rotate-90 md:scale-75 lg:text-5xl">
+          comment
+        </div>
         <section className="w-5/6 h-full pb-20 mx-auto scale-75 md:scale-100 md:w-3/5">
+          {/* <hr
+            className={`h-[1px] border-t-4 border-[rgba(216,195,165,0.50)] w-1/2 -ml-80 mt-40 sm:mt-36 rotate-90`}
+          ></hr> */}
           <div ref={ref}>
             <div className="flex gap-4 ml-16 translate-y-7">
               <Avatar src={avatar} sx={{ width: 72, height: 72 }} />

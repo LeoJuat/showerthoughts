@@ -136,7 +136,7 @@ const Profile = () => {
             </button>
             <button
               onClick={bioHandler}
-              className={`w-full lg:px-6 px-3 py-1 lg:py-3 mt-2 text-sm font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
+              className={`w-full lg:px-6 px-3 py-1 lg:py-3 mt-2 lg:text-xl text-sm font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
             >
               Edit bio
             </button>
