@@ -130,19 +130,19 @@ const Profile = () => {
           <div className="flex flex-col">
             <button
               onClick={avatarHandler}
-              className={`w-full px-6 py-3 mt-2 text-xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
+              className={`w-full lg:px-6 px-3 py-1 lg:py-3 mt-2 text-sm lg:text-xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
             >
               Change avatar
             </button>
             <button
               onClick={bioHandler}
-              className={`w-full px-6 py-3 mt-2 text-xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
+              className={`w-full lg:px-6 px-3 py-1 lg:py-3 mt-2 text-sm font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105`}
             >
               Edit bio
             </button>
           </div>
         </div>
-        <h1 className="w-5/6 mx-auto text-3xl text-gray-700">
+        <h1 className="w-5/6 mx-auto mt-10 text-3xl text-gray-700 lg:mt-0">
           @{localStorage.getItem("name")}
         </h1>
         <p className="w-9/12 mx-auto mt-10 mb-8 text-2xl">
@@ -168,7 +168,7 @@ const Profile = () => {
           </div>
         )}
         {imageInput && (
-          <div className="flex items-center justify-center gap-3 py-5">
+          <div className="flex flex-col items-center justify-center gap-3 py-5 lg:flex-row">
             <input
               onChange={(e) => setAvatar(e.target.value)}
               value={avatar}
@@ -186,10 +186,10 @@ const Profile = () => {
         )}
       </div>
 
-      <section className="flex justify-center w-5/6 gap-40 pt-20 mx-auto">
+      <section className="flex justify-center w-5/6 gap-10 pt-20 mx-auto lg:gap-40">
         <button
           onClick={showPostsHandler}
-          className={`w-1/5 px-10 py-3 mt-2 text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
+          className={`w-fit lg:px-10 lg:py-3 px-5 py-1 mt-2 text-md lg:text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
             showPosts ? "bg-[#E85A4F] text-white" : "bg-transparent text-black"
           }`}
         >
@@ -197,7 +197,7 @@ const Profile = () => {
         </button>
         <button
           onClick={showLikesHandler}
-          className={`w-1/5 px-10 py-3 mt-2 text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
+          className={`w-fit lg:px-10 lg:py-3 px-5 py-1 mt-2 text-md lg:text-2xl font-medium duration-200 border-2 border-[#E85A4F] hover:bg-[#E85A4F] hover:text-white rounded-2xl hover:scale-105 ${
             showLikes ? "bg-[#E85A4F] text-white" : "bg-transparent text-black"
           }`}
         >

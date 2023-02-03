@@ -38,16 +38,16 @@ const Notifications = () => {
       {oldPosts?.map((post, index) => {
         return post.uid === localStorage.getItem("uid") ? (
           <div
-            className="bg-[rgba(216,195,165,0.50)] flex justify-between items-end mx-auto w-3/4 mt-4 py-5 my-3 px-20 rounded-xl whitespace-nowrap overflow-hidden text-2xl font-normal text-start"
+            className="bg-[rgba(216,195,165,0.50)] flex lg:flex-row flex-col justify-between lg:items-end items-center mx-auto w-3/4 mt-4 py-5 my-3 px-20 rounded-xl whitespace-nowrap overflow-hidden text-base lg:text-2xl font-normal text-start"
             key={index}
           >
-            <div className="flex items-center gap-12">
+            <div className="flex flex-col items-center gap-5 lg:gap-12 lg:flex-row">
               <Avatar src={post.avatar} sx={{ width: 100, height: 100 }} />
               <h1>
                 {post.username} {post.type}d your post!
               </h1>
             </div>
-            <p className="text-[#717171] text-sm">
+            <p className="text-[#717171] lg:text-sm text-xs">
               {post.timestamp?.toDate().toLocaleDateString("en-US", options)}
             </p>
           </div>

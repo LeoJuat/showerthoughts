@@ -8,7 +8,7 @@ export default function NavBar() {
 
   return (
     <nav className="w-5/6 pt-10 mx-auto background">
-      <div className="flex items-center justify-between py-8 border-b-2 border-[rgba(216,195,165,0.50)]">
+      <div className="flex items-center justify-between py-8">
         <Link
           to="/"
           className="text-4xl text-[#E85A4F] font-extrabold tracking-wide duration-200 hover:scale-110"
