@@ -125,7 +125,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -146,7 +146,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -157,10 +157,12 @@ const Explore = () => {
             );
           })}
 
-        <button
-          className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
-          onClick={moreSportsHandler}
-        >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        {news && (
+          <button
+            className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
+            onClick={moreSportsHandler}
+          >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        )}
 
         <h1 className="text-[#E85A4F] font-bold text-3xl pt-20 pb-10 tracking-wider">
           Trending now: Entertainment
@@ -177,7 +179,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -198,7 +200,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -209,10 +211,12 @@ const Explore = () => {
             );
           })}
 
-        <button
-          className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
-          onClick={moreNewsHandler}
-        >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        {news && (
+          <button
+            className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
+            onClick={moreNewsHandler}
+          >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        )}
 
         <h1 className="text-[#E85A4F] font-bold text-3xl pt-20 pb-10 tracking-wider">
           Trending now: Technology
@@ -229,7 +233,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -250,7 +254,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -261,10 +265,12 @@ const Explore = () => {
             );
           })}
 
-        <button
-          className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
-          onClick={moreTechHandler}
-        >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        {news && (
+          <button
+            className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
+            onClick={moreTechHandler}
+          >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        )}
 
         <h1 className="text-[#E85A4F] font-bold text-3xl pt-20 pb-10 tracking-wider">
           Trending now: Health
@@ -281,7 +287,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -302,7 +308,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -313,10 +319,12 @@ const Explore = () => {
             );
           })}
 
-        <button
-          className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
-          onClick={moreHealthHandler}
-        >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        {news && (
+          <button
+            className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
+            onClick={moreHealthHandler}
+          >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        )}
 
         <h1 className="text-[#E85A4F] font-bold text-3xl pt-20 pb-10 tracking-wider">
           Trending now: Business
@@ -333,7 +341,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -355,7 +363,7 @@ const Explore = () => {
                   {article.title.substring(0, 75) + "..."}
                 </div>
                 <a
-                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-3 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
+                  className="flex items-center justify-center xl:w-1/5 w-4/5 mx-auto xl:mx-0 px-10 py-5 mt-2 text-2xl font-medium duration-200 bg-[#E85A4F] text-white rounded-2xl hover:scale-105"
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
@@ -366,10 +374,12 @@ const Explore = () => {
             );
           })}
 
-        <button
-          className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
-          onClick={moreBusinessHandler}
-        >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        {news && (
+          <button
+            className="text-[#E85A4F] font-bold text-2xl my-5 flex w-full justify-center xl:mb-10 tracking-wider hover:scale-105 duration-200"
+            onClick={moreBusinessHandler}
+          >{`${!moreSportsNews ? "(see more)" : "(see less)"}`}</button>
+        )}
       </section>
     </>
   );
