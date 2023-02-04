@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Posts from "../Components/Post";
 import { q } from "../firebase";
 import AuthContext from "../store/AuthContext";
+import logo from "../imgs/showerthoughts.png";
 
 const Profile = () => {
   const [imageInput, setImageInput] = useState(false);
@@ -96,13 +97,13 @@ const Profile = () => {
 
   return (
     <>
-      <nav className="w-5/6 py-10 mx-auto background">
+      <nav className="w-5/6 py-12 mx-auto background">
         <ul className="flex items-center text-[#E85A4F] justify-between">
           <Link
             to="/"
-            className="text-4xl font-extrabold tracking-wide duration-200 hover:scale-110"
+            className="w-1/12 duration-200 -translate-x-6 hover:scale-110"
           >
-            Logo
+            <img src={logo} alt="logo" />
           </Link>
           <div className="flex items-center gap-10">
             <button
