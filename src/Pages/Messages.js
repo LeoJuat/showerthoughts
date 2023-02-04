@@ -19,7 +19,7 @@ const Messages = () => {
     <>
       <NavBar />
       <section className="w-full h-[75vh]">
-        <div className="bg-[rgba(216,195,165,0.50)] flex w-4/5 h-[95%] mx-auto mt-16 rounded-xl">
+        <div className="bg-[rgba(216,195,165,0.50)] flex w-4/5 h-[95%] mx-auto mt-6 rounded-xl">
           <Sidebar messages={messages} setMessageThread={threadHandler} />
           <Chat userClicked={userClicked} setMessages={setMessagesHandler} />
         </div>
