@@ -146,9 +146,17 @@ const Profile = () => {
         <h1 className="w-5/6 mx-auto mt-10 text-3xl text-gray-700 lg:mt-0">
           @{localStorage.getItem("name")}
         </h1>
-        <p className="w-9/12 mx-auto mt-10 mb-8 text-2xl">
-          {localStorage.getItem(`bio-${localStorage.getItem("uid")}`)}
-        </p>
+        {localStorage.getItem(`bio-${localStorage.getItem("uid")}`) && (
+          <p className="w-9/12 mx-auto mt-10 mb-8 text-2xl">
+            {localStorage.getItem(`bio-${localStorage.getItem("uid")}`)}
+          </p>
+        )}
+        {!localStorage.getItem(`bio-D6ntv2O9cdc2Xt1bYvB96sIc0qM2`) &&
+          !localStorage.getItem(`bio-${localStorage.getItem("uid")}`) && (
+            <p className="w-9/12 mx-auto mt-10 mb-8 text-2xl">
+              I am a Front-End engineer. I love basketball and puppies!
+            </p>
+          )}
         {showBio && (
           <div className="flex flex-col items-center justify-center gap-3 py-5">
             <textarea
