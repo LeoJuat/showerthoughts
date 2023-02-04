@@ -10,7 +10,7 @@ export default function NavBar() {
   return (
     <nav className="w-5/6 pt-4 mx-auto background">
       <div className="flex items-center justify-between py-8">
-        <Link to="/" className="w-1/12 duration-200 hover:scale-110">
+        <Link to="/" className="w-1/4 duration-200 lg:w-1/12 hover:scale-110">
           <img className="-translate-x-6" src={logo} alt="logo" />
         </Link>
         <nav>

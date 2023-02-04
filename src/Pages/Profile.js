@@ -101,7 +101,7 @@ const Profile = () => {
         <ul className="flex items-center text-[#E85A4F] justify-between">
           <Link
             to="/"
-            className="w-1/12 duration-200 -translate-x-6 hover:scale-110"
+            className="w-1/4 duration-200 -translate-x-6 lg:w-1/12 hover:scale-110"
           >
             <img src={logo} alt="logo" />
           </Link>
