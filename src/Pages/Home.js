@@ -50,10 +50,11 @@ const Home = () => {
       )}
       <Trending />
       <PostBox />
-      <FlipMove>
-        {oldPosts?.map((post, index) => (
+      {oldPosts?.map((post, index) => {
+        return post.username === "LeoJuat" ? (
           <Post
             key={index}
+            admin={true}
             comment={post.comment}
             username={post.username}
             text={post.text}
@@ -68,7 +69,34 @@ const Home = () => {
               ?.toDate()
               .toLocaleDateString("en-US", options)}
           />
-        ))}
+        ) : (
+          []
+        );
+      })}
+      <FlipMove>
+        {oldPosts?.map((post, index) => {
+          return post.username !== "LeoJuat" ? (
+            <Post
+              key={index}
+              admin={false}
+              comment={post.comment}
+              username={post.username}
+              text={post.text}
+              avatar={post.avatar}
+              category={post.category}
+              image={post.image}
+              uuid={post.postUUID}
+              uid={post.uid}
+              originalUUID={post.originalUUID}
+              oldPosts={oldPosts}
+              timestamp={post.timestamp
+                ?.toDate()
+                .toLocaleDateString("en-US", options)}
+            />
+          ) : (
+            []
+          );
+        })}
       </FlipMove>
     </>
   );

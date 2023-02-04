@@ -69,6 +69,7 @@ const PostBox = () => {
               className="w-5/6 pt-2 text-2xl bg-transparent outline-none textArea placeholder:text-[#717171]"
               name="post"
               rows="5"
+              maxLength={200}
               placeholder="What's on your mind?"
             ></textarea>
           </div>

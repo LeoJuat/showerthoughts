@@ -9,6 +9,7 @@ import { notificationRef } from "../firebase";
 const Posts = forwardRef(
   (
     {
+      admin,
       username,
       timestamp,
       text,
@@ -71,6 +72,9 @@ const Posts = forwardRef(
         {!comment && (
           <section className="w-full h-full mx-auto scale-75 md:pb-20 md:w-4/5 md:scale-100">
             <div ref={ref}>
+              {admin && (
+                <p className="text-[#717171] text-end">* pinned message</p>
+              )}
               <div className="flex gap-4 ml-16 translate-y-7">
                 <Avatar src={avatar} sx={{ width: 72, height: 72 }} />
                 <h3 className="translate-y-4 text-[#717171]">@{username}</h3>
