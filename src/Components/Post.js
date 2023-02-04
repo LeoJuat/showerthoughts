@@ -30,13 +30,9 @@ const Posts = forwardRef(
 
       addDoc(notificationRef, {
         username: localStorage.getItem("name"),
-        avatar: localStorage.getItem(
-          `avatar-${localStorage.getItem("uid")}`
-        ) ? (
-          localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
-        ) : (
-          <Avatar />
-        ),
+        avatar: localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
+          ? localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
+          : "",
         type: "like",
         timestamp: Timestamp.fromDate(new Date()),
         uid: uid,
