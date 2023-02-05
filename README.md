@@ -1,4 +1,4 @@
-# showerthoughts
+# showerthoughts - https://showerthoughts.social/home
 
 Social media clone, inspired by twitter, was designed and created by myself with the help of React, Tailwind CSS, Firebase Firestore, and hosted on Firebase.
 
