@@ -41,6 +41,8 @@ const Sidebar = ({ setMessageThread }) => {
   const chatHandler = (e) => {
     e.preventDefault();
 
+    localStorage.setItem("recipient", e.target.value);
+    console.log(e.target.id);
     setMessageThread(e.target.id);
 
     setSearchName("");
@@ -54,7 +56,7 @@ const Sidebar = ({ setMessageThread }) => {
 
   return (
     <>
-      <div className="bg-[#E85A4F] flex-1 rounded-tl-xl rounded-bl-xl py-5 px-3">
+      <div className="bg-[#E85A4F] flex-col lg:h-auto h-fit rounded-xl lg:rounded-tl-xl lg:rounded-bl-xl py-5 px-3">
         <input
           className="w-full px-2 py-4 mb-5 rounded-md"
           placeholder="Search name"
@@ -64,33 +66,52 @@ const Sidebar = ({ setMessageThread }) => {
         {searchName &&
           oldPosts?.map((post) => {
             return post.username?.includes(searchName) ? (
-              <p
-                className="flex items-center bg-[#ddd3c4] py-5 mb-3 px-1 rounded-lg hover:bg-[#cec3b2] hover:scale-105 duration-300 cursor-pointer pl-5"
+              <button
+                className="flex w-full items-center bg-[#ddd3c4] py-5 mb-3 px-1 rounded-lg hover:bg-[#cec3b2] hover:scale-105 duration-300 cursor-pointer pl-5"
                 onClick={chatHandler}
                 key={post.uid}
                 value={post.username}
                 id={post.uid}
               >
                 {post.username}
-              </p>
+              </button>
             ) : (
               ""
             );
           })}
+
         {!searchName &&
           arrayUniqueByKey?.map((obj, index) => {
-            if (obj.username !== localStorage.getItem("name")) {
+            console.log(obj);
+            if (
+              (obj.senderUid === localStorage.getItem("uid") &&
+                obj.username !== localStorage.getItem("name")) ||
+              (obj.receiverUid === localStorage.getItem("uid") &&
+                obj.username !== localStorage.getItem("name"))
+            ) {
               return (
-                <div
+                <button
                   onClick={chatHandler}
                   key={index}
                   id={obj.senderUid}
-                  className="flex items-center bg-[#ddd3c4] py-5 mb-3 px-1 rounded-lg hover:bg-[#cec3b2] hover:scale-105 duration-300 cursor-pointer pl-5"
+                  className="flex items-center bg-[#ddd3c4] w-full py-5 mb-3 px-1 rounded-lg hover:bg-[#cec3b2] hover:scale-105 duration-300 cursor-pointer pl-5"
                 >
-                  <Avatar src={obj.avatar} />
-                  <h1 className="ml-5">{obj.username}:</h1>
-                  <p className="ml-3">Select to see messages</p>
-                </div>
+                  <Avatar
+                    onClick={chatHandler}
+                    id={obj.senderUid}
+                    src={obj.avatar}
+                  />
+                  <h1 onClick={chatHandler} id={obj.senderUid} className="ml-5">
+                    {obj.username}:
+                  </h1>
+                  <p
+                    onClick={chatHandler}
+                    id={obj.senderUid}
+                    className="ml-3 py-1 lg:px-0 px-3 bg-[#E85A4F] rounded-full text-white"
+                  >
+                    Select to see messages
+                  </p>
+                </button>
               );
             }
             return "";

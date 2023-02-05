@@ -38,6 +38,7 @@ const Chat = ({ userClicked, setMessages }) => {
 
     addDoc(usersChatRef, {
       username: localStorage.getItem("name"),
+      recipient: localStorage.getItem("recipient"),
       avatar: localStorage.getItem(`avatar-${localStorage.getItem("uid")}`) ? (
         localStorage.getItem(`avatar-${localStorage.getItem("uid")}`)
       ) : (
@@ -63,9 +64,10 @@ const Chat = ({ userClicked, setMessages }) => {
 
   return (
     <>
-      <div className="flex flex-col w-2/3 px-3 py-5 overflow-y-scroll scrollbar-hide h-5/6">
+      <div className="flex flex-col justify-between w-full h-full px-3 py-5 overflow-y-scroll scrollbar-hide">
         {userClicked &&
           oldPosts?.map((post, index) => {
+            console.log(post);
             if (
               post.senderUid === localStorage.getItem("uid") &&
               post.receiverUid === userClicked
@@ -76,13 +78,13 @@ const Chat = ({ userClicked, setMessages }) => {
                     <div>
                       <Avatar src={post.avatar} />
                     </div>
-                    <div className="flex justify-end w-1/2 ml-5 h-1/2">
+                    <div className="flex justify-end w-full ml-5 lg:w-1/2 h-1/2">
                       <p className="flex justify-center w-fit px-3 py-3 text-white text-lg font-medium bg-[#ec827a] rounded-bl-2xl rounded-br-2xl rounded-tl-2xl">
                         {post.messages}
                       </p>
                     </div>
                   </div>
-                  <span className="flex flex-row-reverse text-gray-500">
+                  <span className="flex flex-row-reverse text-xs text-gray-500 lg:text-base">
                     {post.timestamp
                       ?.toDate()
                       .toLocaleDateString("en-US", options)}
@@ -100,13 +102,13 @@ const Chat = ({ userClicked, setMessages }) => {
                     <div>
                       <Avatar src={post.avatar} />
                     </div>
-                    <div className="w-1/2 ml-5 h-1/2">
+                    <div className="w-full ml-5 lg:w-1/2 h-1/2">
                       <p className="flex justify-center px-3 py-3 text-lg font-medium text-white bg-gray-400 w-fit rounded-bl-2xl rounded-br-2xl rounded-tr-2xl">
                         {post.messages}
                       </p>
                     </div>
                   </div>
-                  <span className="text-gray-500">
+                  <span className="text-xs text-gray-500 lg:text-base">
                     {post.timestamp
                       ?.toDate()
                       .toLocaleDateString("en-US", options)}
@@ -129,7 +131,7 @@ const Chat = ({ userClicked, setMessages }) => {
 
         <form
           onSubmit={messageHandler}
-          className="absolute flex flex-col w-2/4 bottom-16"
+          className="flex flex-col w-full bottom-16"
         >
           <div>
             <input
