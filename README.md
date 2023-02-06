@@ -16,6 +16,10 @@ Social media clone, inspired by twitter, was designed and created by myself with
 
 <img width="1494" alt="STPostBox" src="https://user-images.githubusercontent.com/100502573/216850525-f78e6460-c3ad-4f12-81da-a2644474693d.png">
 
+### Post example
+
+<img width="1494" alt="STPostExample" src="https://user-images.githubusercontent.com/100502573/216856541-01741227-6953-4536-9851-7fc49345e10b.png">
+
 ### Explore page
 
 <img width="1494" alt="STExplorePage" src="https://user-images.githubusercontent.com/100502573/216850517-5c4267fc-3c8a-466f-a485-ef64e49d70d9.png">
