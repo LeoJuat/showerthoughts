@@ -1,6 +1,6 @@
 # showerthoughts - https://showerthoughts.social/home
 
-Social media clone that eliminates the "Follower/Likes" addiction to combat the feeling of unlikeliness that some people may experience. Allows people to post what they like and not worry about a follower count or how many likes. Showerthoughts was designed and created by myself with the help of React, Tailwind CSS, Firebase Firestore, and hosted on Firebase.
+Social media clone that eliminates the "Follower/Following" addiction to combat the feeling of being unlikeable. Showerthoughts was designed and created by myself with the help of React, Tailwind CSS, Firebase Firestore, and hosted on Firebase.
 
 <img width="1494" alt="STLoginHome" src="https://user-images.githubusercontent.com/100502573/216850521-02fa1ecc-a209-4019-ab3d-462c3154d4dd.png">
 
